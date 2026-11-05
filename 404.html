@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LittleSteps Pediatric Care</title>
+  <link rel="icon" type="image/svg+xml" href="littlesteps-pediatric-care/favicon.svg" />
+  <script>
+    // Deep-link repair: if the requested path is missing at the site root,
+    // retry it inside the littlesteps-pediatric-care/ folder (once, to avoid loops).
+    (function () {
+      var BASE = 'littlesteps-pediatric-care/';
+      var path = decodeURIComponent(location.pathname || '/');
+      // Strip a leading "/repo-name/" (project pages) and the filename itself
+      var last = path.lastIndexOf('/');
+      var dir = path.slice(0, last + 1);
+      var file = path.slice(last + 1);
+      // Remove the site-root prefix from the directory if present (e.g. /repo/ -> /)
+      var siteDir = dir.slice(dir.indexOf(BASE) >= 0 ? dir.indexOf(BASE) + BASE.length : 0);
+      var query = location.search || '';
+      try {
+        if (sessionStorage.getItem('ls_404_retry')) {
+          sessionStorage.removeItem('ls_404_retry');
+          location.replace(siteDir + file + query);
+          return;
+        }
+        sessionStorage.setItem('ls_404_retry', '1');
+        location.replace(siteDir + BASE + file + query);
+      } catch (e) {
+        location.replace(BASE + 'index.html');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p style="font-family: system-ui, sans-serif; padding: 2rem; text-align: center;">
+    <a href="littlesteps-pediatric-care/index.html">LittleSteps Pediatric Care</a>
+  </p>
+</body>
+</html>
