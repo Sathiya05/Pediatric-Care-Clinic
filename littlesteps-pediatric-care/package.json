@@ -1,0 +1,14 @@
+{
+  "name": "littlesteps-pediatric-care",
+  "version": "1.0.0",
+  "description": "LittleSteps Pediatric Care - Little Smiles. Big Healthy Futures. A complete, responsive pediatric clinic & child wellness center website built with HTML5, Tailwind CSS and Vanilla JavaScript. Frontend demonstration with localStorage demo data.",
+  "private": true,
+  "scripts": {
+    "build:css": "node node_modules/tailwindcss/lib/cli.js -i ./css/input.css -o ./css/style.css --minify",
+    "watch:css": "node node_modules/tailwindcss/lib/cli.js -i ./css/input.css -o ./css/style.css --watch",
+    "start": "npx --yes serve -l 3000 ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
+  }
+}

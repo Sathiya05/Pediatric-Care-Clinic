@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book an Appointment | LittleSteps Pediatric Care</title>
+  <meta name="description" content="Book your child's next pediatric checkup — validated booking form, appointment preparation guide, what happens after booking, and emergency guidance." />
+  <meta name="theme-color" content="#287C91" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){try{var t=localStorage.getItem('ls_theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark'){document.documentElement.classList.add('dark');}var d=localStorage.getItem('ls_dir');if(d){document.documentElement.setAttribute('dir',d);}}catch(e){}})();</script>
+</head>
+<body class="font-body bg-[color:var(--bg)] text-[color:var(--text)] antialiased">
+<div id="navbar"></div>
+
+<main id="main-content">
+
+  <!-- ============ 1 · HERO ============ -->
+  <section class="section bg-hero-pattern">
+    <div class="container-site text-center space-y-4 max-w-2xl mx-auto">
+      <span class="eyebrow">Appointments</span>
+      <h1 class="font-heading font-semibold text-4xl sm:text-5xl xl:text-6xl leading-[1.1] text-balance">Book Your Child’s Next Checkup.</h1>
+      <p class="lead">Pick a time that fits your family. We’ll confirm within one working day — demo bookings are stored on this device only.</p>
+    </div>
+  </section>
+
+  <!-- ============ 2–4 · FORM + GUIDE ============ -->
+  <section class="section bg-[color:var(--bg)] -mt-6" aria-labelledby="booking-heading">
+    <div class="container-site grid lg:grid-cols-5 gap-8 items-start">
+
+      <!-- Booking form -->
+      <div class="lg:col-span-3 card p-6 sm:p-8">
+        <h2 id="booking-heading" class="font-heading font-semibold text-2xl mb-1">Appointment Booking</h2>
+        <p class="text-xs text-[color:var(--text-secondary)] mb-6">Frontend demonstration — no appointment is sent to a real clinic and no personal data leaves this device.</p>
+
+        <form id="appointmentForm" novalidate class="grid sm:grid-cols-2 gap-4">
+          <div class="field-wrap">
+            <label class="field-label" for="parentName">Parent Name *</label>
+            <input class="field-input" id="parentName" name="parentName" type="text" required autocomplete="name" placeholder="e.g. Priya Sharma" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="childName">Child Name *</label>
+            <input class="field-input" id="childName" name="childName" type="text" required autocomplete="off" placeholder="e.g. Aarav Sharma" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="childDob">Child Date of Birth *</label>
+            <input class="field-input" id="childDob" name="childDob" type="date" required />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="email">Parent Email *</label>
+            <input class="field-input" id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="phone">Phone Number *</label>
+            <input class="field-input" id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+1 (555) 000-0000" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="appointmentType">Appointment Type *</label>
+            <select class="field-select" id="appointmentType" name="appointmentType" required>
+              <option value="">Select a type…</option>
+              <option>Well-child visit</option>
+              <option>Vaccination</option>
+              <option>Growth monitoring</option>
+              <option>Developmental screening</option>
+              <option>Nutrition guidance</option>
+              <option>Newborn care</option>
+              <option>Sick visit</option>
+              <option>Follow-up consultation</option>
+            </select>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="date">Preferred Date *</label>
+            <input class="field-input" id="date" name="date" type="date" required />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="time">Preferred Time *</label>
+            <select class="field-select" id="time" name="time" required>
+              <option value="">Select a time…</option>
+              <option>08:30</option><option>09:15</option><option>10:00</option><option>10:45</option><option>11:30</option>
+              <option>13:00</option><option>13:45</option><option>14:30</option><option>15:15</option><option>16:00</option><option>16:45</option><option>17:30</option>
+            </select>
+          </div>
+          <div class="field-wrap sm:col-span-2">
+            <label class="field-label" for="notes">Additional Notes <span class="text-[color:var(--text-secondary)] font-normal">(optional)</span></label>
+            <textarea class="field-textarea" id="notes" name="notes" rows="3" maxlength="500" placeholder="Allergies, current medicines, concerns to discuss…"></textarea>
+          </div>
+          <div class="sm:col-span-2">
+            <button type="submit" class="btn-primary w-full sm:w-auto">Request Appointment
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+          </div>
+        </form>
+
+        <!-- Success panel -->
+        <div id="appointmentSuccess" class="hidden mt-2 rounded-3xl border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 p-6" role="status">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="icon-bubble !bg-emerald-100 dark:!bg-emerald-800 !text-emerald-700 dark:!text-emerald-200"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 10"/></svg></span>
+            <h3 class="font-heading font-semibold text-xl text-emerald-800 dark:text-emerald-200">Request received (demo)</h3>
+          </div>
+          <p class="text-sm text-emerald-900 dark:text-emerald-100">Your reference is <strong id="appointmentReference">LS-000000</strong>. Demo bookings are stored on this device and appear in the Parent Dashboard — nothing was sent to a real clinic.</p>
+          <ul id="appointmentSummary" class="list-disc ps-6 mt-3 text-sm text-emerald-900 dark:text-emerald-100"></ul>
+          <button type="button" id="bookAnotherBtn" class="btn-outline btn-sm mt-4">Book another appointment</button>
+        </div>
+      </div>
+
+      <!-- Side guidance -->
+      <aside class="lg:col-span-2 space-y-6">
+        <div class="card p-6 space-y-3">
+          <h2 class="font-heading font-bold text-xl">Before Your Visit — Prep Guide</h2>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2"><svg class="shrink-0 mt-0.5 text-[color:var(--primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 10"/></svg>Bring immunization records and a list of current medicines</li>
+            <li class="flex items-start gap-2"><svg class="shrink-0 mt-0.5 text-[color:var(--primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 10"/></svg>Pack a small comfort kit: snack, toy, wipes, extra clothes</li>
+            <li class="flex items-start gap-2"><svg class="shrink-0 mt-0.5 text-[color:var(--primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 10"/></svg>Note questions beforehand — feeding, sleep, behavior, growth</li>
+            <li class="flex items-start gap-2"><svg class="shrink-0 mt-0.5 text-[color:var(--primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 10"/></svg>Arrive 10 minutes early for calm check-in</li>
+          </ul>
+        </div>
+        <div class="card p-6 space-y-3">
+          <h2 class="font-heading font-bold text-xl">What Happens After Booking</h2>
+          <ol class="space-y-2 text-sm list-decimal ps-5">
+            <li>Our team reviews your request (demo: it appears in the admin dashboard).</li>
+            <li>You receive a confirmation by phone or email within one working day.</li>
+            <li>A reminder goes out the day before your visit.</li>
+            <li>After the visit, follow-ups appear in your parent dashboard.</li>
+          </ol>
+        </div>
+        <div class="rounded-3xl border border-[color:var(--secondary)] bg-[color:var(--peach)] p-6">
+          <h2 class="font-heading font-bold text-lg flex items-center gap-2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Urgent or Emergency?</h2>
+          <p class="text-sm mt-2">If your child has difficulty breathing, severe allergic reaction, seizures, or unresponsiveness — <strong>call your local emergency number (911 in the US) or go to the nearest ER immediately.</strong> Do not book a routine appointment for emergencies.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 7 · CTA ============ -->
+  <section class="py-14 bg-[color:var(--accent)] text-center" aria-labelledby="appt-cta">
+    <div class="container-site space-y-3 max-w-2xl">
+      <h2 id="appt-cta" class="section-heading !text-2xl sm:!text-3xl">Questions before you book?</h2>
+      <p class="lead">Our team is happy to help you choose the right visit type.</p>
+      <a href="contact.html" class="btn-primary">Contact the Clinic</a>
+    </div>
+  </section>
+</main>
+
+<div id="footer"></div>
+<script src="js/main.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/footer.js"></script>
+<script src="js/appointments.js"></script>
+</body>
+</html>

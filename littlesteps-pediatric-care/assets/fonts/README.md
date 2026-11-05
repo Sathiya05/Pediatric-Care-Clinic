@@ -1,0 +1,1 @@
+Self-hosted fonts go here. The project currently imports Inter, Outfit and Plus Jakarta Sans from Google Fonts via css/input.css. To self-host, drop .woff2 files here and add @font-face rules in css/input.css, then run npm run build:css.

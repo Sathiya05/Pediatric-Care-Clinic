@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | LittleSteps Pediatric Care</title>
+  <meta name="description" content="LittleSteps clinic admin demo panel — appointments, parents, children, doctors, vaccination records, messages and clinic settings. Demonstration data only." />
+  <meta name="theme-color" content="#287C91" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>(function(){try{var t=localStorage.getItem('ls_theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark'){document.documentElement.classList.add('dark');}var d=localStorage.getItem('ls_dir');if(d){document.documentElement.setAttribute('dir',d);}}catch(e){}})();</script>
+</head>
+<body class="font-body bg-[color:var(--bg)] text-[color:var(--text)] antialiased">
+<!-- Dashboard top bar: logo on the left; hamburger (mobile/tablet) or title + controls (desktop) on the right -->
+<header class="sticky top-0 z-50 bg-[color:var(--card)] border-b border-[color:var(--border)] shadow-sm" role="banner">
+  <a class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:start-2 focus:z-[70] btn btn-primary btn-sm" href="#main-content">Skip to main content</a>
+  <div class="flex items-center gap-2 sm:gap-4 h-[72px] px-3 sm:px-6">
+    <!-- Logo (left corner) -->
+    <a href="../index.html" class="flex items-center gap-2.5 shrink-0 group" aria-label="LittleSteps Pediatric Care - Home">
+      <svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="44" height="44" rx="14" fill="#287C91"/>
+        <path d="M15 30c0-6.6 4.4-11 9-11s9 4.4 9 11" stroke="#DDF3EF" stroke-width="3" stroke-linecap="round"/>
+        <path d="M24 12v8M20 16h8" stroke="#F4A261" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="24" cy="36" r="2.4" fill="#F4A261"/>
+      </svg>
+      <span class="flex flex-col leading-tight">
+        <span class="font-logo font-semibold text-xl tracking-tight text-[color:var(--primary)] group-hover:text-[color:var(--primary-dark)] transition-colors">LittleSteps</span>
+        <span class="text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--text-secondary)]">Pediatric Care</span>
+      </span>
+    </a>
+
+    <!-- Desktop (>= 1377px): normal top bar with page title and controls -->
+    <div class="hidden wide:flex ms-auto items-center gap-1.5 sm:gap-2">
+      <div class="relative">
+        <button id="adminNotifBtn" type="button" class="btn-icon relative" aria-label="Notifications" aria-expanded="false" aria-haspopup="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="absolute top-2 end-2 w-2.5 h-2.5 rounded-full bg-[color:var(--secondary)] border-2 border-[color:var(--card)]" aria-hidden="true"></span>
+        </button>
+        <div id="adminNotifPanel" class="hidden absolute end-0 top-full mt-2 w-80 max-w-[90vw] card shadow-soft p-3 z-30 text-xs" role="dialog" aria-label="Demo notifications">
+          <p class="font-heading font-bold text-sm px-1 pb-2 border-b border-[color:var(--border)]">Notifications <span class="text-[color:var(--text-secondary)] font-normal">(demo)</span></p>
+          <ul class="divide-y divide-[color:var(--border)]">
+            <li class="py-2 px-1"><strong>2 unread messages</strong> waiting in the demo inbox.</li>
+            <li class="py-2 px-1"><strong>1 appointment</strong> requested for tomorrow (demo).</li>
+            <li class="py-2 px-1"><strong>Vaccine reminder:</strong> 1 record due within 2 weeks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hidden sm:flex items-center gap-2 ps-1">
+        <span class="w-10 h-10 rounded-full bg-[color:var(--secondary)] text-[#4A2F10] font-heading font-semibold flex items-center justify-center text-sm" aria-hidden="true">CA</span>
+        <span class="hidden md:block text-xs leading-tight"><span class="block font-bold">Clinic Admin</span><span class="text-[color:var(--text-secondary)]">Demo admin account</span></span>
+      </div>
+      <button type="button" class="btn-icon" data-action="toggle-theme" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+        <svg data-icon="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg data-icon="moon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button type="button" class="btn-icon rtl-flip" data-action="toggle-rtl" aria-label="Toggle right-to-left layout" aria-pressed="false" title="Toggle right-to-left layout">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile / tablet (< 1377px): hamburger only -->
+    <button id="dashSidebarToggle" type="button" class="btn-icon ms-auto wide:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="dashSidebar">
+      <svg id="dashIconOpen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      <svg id="dashIconClose" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="relative flex">
+  <!-- Sidebar -->
+  <aside id="dashSidebar" class="dash-sidebar fixed wide:sticky top-[72px] z-40 w-72 h-[calc(100vh-72px)] overflow-y-auto bg-[color:var(--card)] border-e border-[color:var(--border)] p-4 flex flex-col" aria-label="Admin navigation">
+    <!-- Menu header: page title, account, notifications and display toggles -->
+    <div class="pb-3 mb-2 border-b border-[color:var(--border)] space-y-3 wide:hidden">
+      <h1 class="font-heading font-semibold text-base sm:text-lg truncate">Admin Dashboard</h1>
+      <div class="flex items-center gap-2">
+        <span class="w-10 h-10 rounded-full bg-[color:var(--secondary)] text-[#4A2F10] font-heading font-semibold flex items-center justify-center text-sm shrink-0" aria-hidden="true">CA</span>
+        <span class="text-xs leading-tight"><span class="block font-bold">Clinic Admin</span><span class="text-[color:var(--text-secondary)]">Demo admin account</span></span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <button id="drawerNotifBtn" type="button" class="btn-icon relative" aria-label="Notifications" aria-expanded="false" aria-haspopup="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="absolute top-2 end-2 w-2.5 h-2.5 rounded-full bg-[color:var(--secondary)] border-2 border-[color:var(--card)]" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn-icon" data-action="toggle-theme" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+          <svg data-icon="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg data-icon="moon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button type="button" class="btn-icon rtl-flip" data-action="toggle-rtl" aria-label="Toggle right-to-left layout" aria-pressed="false" title="Toggle right-to-left layout">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+        </button>
+      </div>
+      <div id="drawerNotifPanel" class="hidden card shadow-soft p-3 text-xs" role="dialog" aria-label="Demo notifications">
+        <p class="font-heading font-bold text-sm px-1 pb-2 border-b border-[color:var(--border)]">Notifications <span class="text-[color:var(--text-secondary)] font-normal">(demo)</span></p>
+        <ul class="divide-y divide-[color:var(--border)]">
+          <li class="py-2 px-1"><strong>2 unread messages</strong> waiting in the demo inbox.</li>
+          <li class="py-2 px-1"><strong>1 appointment</strong> requested for tomorrow (demo).</li>
+          <li class="py-2 px-1"><strong>Vaccine reminder:</strong> 1 record due within 2 weeks.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="px-3 pt-1 pb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--secondary-dark)]">Clinic Admin</p>
+    <nav class="grid gap-1" aria-label="Admin sections">
+      <a href="#" class="dash-link active" data-view="overview"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Overview</a>
+      <a href="#" class="dash-link" data-view="appointments"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Appointments</a>
+      <a href="#" class="dash-link" data-view="parents"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg>Parents</a>
+      <a href="#" class="dash-link" data-view="children"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><circle cx="18" cy="9" r="2.4"/><path d="M22 21v-1.5a3 3 0 0 0-2-2.8"/></svg>Children</a>
+      <a href="#" class="dash-link" data-view="doctors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="3"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M12 11v4M10 13h4"/></svg>Doctors</a>
+      <a href="#" class="dash-link" data-view="vaccines"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11.5 14.5 15 11"/></svg>Vaccination Records</a>
+      <a href="#" class="dash-link" data-view="messages"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages <span id="adminUnreadBadge" class="ms-auto badge-warning">0</span></a>
+      <a href="#" class="dash-link" data-view="settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+    </nav>
+    <div class="mt-auto pt-4 border-t border-[color:var(--border)] grid gap-1">
+      <button type="button" class="dash-link text-amber-700 dark:text-amber-400" data-action="reset-demo-data"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>Reset Demo Data</button>
+      <button type="button" class="dash-link text-red-600 dark:text-red-400" data-action="logout"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</button>
+    </div>
+  </aside>
+  <div id="dashSidebarOverlay" class="hidden fixed inset-0 top-[72px] z-30 bg-black/40 wide:hidden" aria-hidden="true"></div>
+
+  <!-- Main column -->
+  <div id="main-content" class="flex-1 min-w-0">
+    <div class="px-4 sm:px-6 pt-3 sm:pt-4 pb-6 space-y-5">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h2 id="adminWelcome" class="font-heading font-semibold text-xl sm:text-2xl">Welcome!</h2>
+        <span class="badge-danger">Demo environment — no real patient data</span>
+      </div>
+
+      <!-- ============ OVERVIEW ============ -->
+      <section id="view-overview" class="dash-view space-y-6" aria-label="Overview">
+        <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+          <div class="stat-card"><span class="icon-bubble"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span><span class="block text-2xl font-heading font-semibold" id="adminStatTotalAppt">0</span><span class="text-xs text-[color:var(--text-secondary)]">Total Appointments</span></span></div>
+          <div class="stat-card"><span class="icon-bubble !bg-[color:var(--peach)] !text-[color:var(--secondary-dark)]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 14.5 13.5"/></svg></span><span><span class="block text-2xl font-heading font-semibold" id="adminStatToday">0</span><span class="text-xs text-[color:var(--text-secondary)]">Today’s Appointments</span></span></div>
+          <div class="stat-card"><span class="icon-bubble"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></span><span><span class="block text-2xl font-heading font-semibold" id="adminStatParents">0</span><span class="text-xs text-[color:var(--text-secondary)]">Registered Parents</span></span></div>
+          <div class="stat-card"><span class="icon-bubble !bg-[color:var(--peach)] !text-[color:var(--secondary-dark)]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></span><span><span class="block text-2xl font-heading font-semibold" id="adminStatChildren">0</span><span class="text-xs text-[color:var(--text-secondary)]">Registered Children</span></span></div>
+          <div class="stat-card"><span class="icon-bubble"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="3"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span><span><span class="block text-2xl font-heading font-semibold" id="adminStatDoctors">0</span><span class="text-xs text-[color:var(--text-secondary)]">Available Doctors</span></span></div>
+        </div>
+        <div class="grid xl:grid-cols-3 gap-4">
+          <div class="card p-6 space-y-4 xl:col-span-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-heading font-bold text-lg">Today’s schedule</h3>
+              <button type="button" class="btn-ghost btn-sm" data-view="appointments">View all</button>
+            </div>
+            <ul id="adminOvToday" class="grid gap-3"></ul>
+          </div>
+          <div class="card p-6 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-heading font-bold text-lg">Unread messages</h3>
+              <button type="button" class="btn-ghost btn-sm" data-view="messages">Inbox</button>
+            </div>
+            <ul id="adminOvMessages" class="grid gap-3"></ul>
+          </div>
+        </div>
+
+        <div class="grid xl:grid-cols-3 gap-4">
+          <div class="card p-6 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-heading font-bold text-lg">Vaccines due</h3>
+              <button type="button" class="btn-ghost btn-sm" data-view="vaccines">Records</button>
+            </div>
+            <ul id="adminOvVaccines" class="grid gap-3"></ul>
+          </div>
+          <div class="card p-6 space-y-4 xl:col-span-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-heading font-bold text-lg">Doctors on duty</h3>
+              <button type="button" class="btn-ghost btn-sm" data-view="doctors">Manage</button>
+            </div>
+            <ul id="adminOvDoctors" class="grid gap-3 sm:grid-cols-2"></ul>
+          </div>
+        </div>
+
+        <div class="card p-6 space-y-2">
+          <h3 class="font-heading font-bold text-lg">About this environment</h3>
+          <p class="text-sm text-[color:var(--text-secondary)]">This panel manipulates <strong>synthetic sample records</strong> stored in your browser’s localStorage. It demonstrates the workflows a secure, audited production system would perform — nothing here meets real-world privacy, access-control or compliance requirements (HIPAA/GDPR-style). Never enter genuine patient information.</p>
+        </div>
+      </section>
+
+      <!-- ============ APPOINTMENTS ============ -->
+      <section id="view-appointments" class="dash-view hidden space-y-4" aria-label="Appointment management">
+        <h3 class="font-heading font-extrabold text-xl">Appointment Management</h3>
+        <div class="grid sm:grid-cols-3 gap-3 max-w-3xl">
+          <input id="adminApptSearch" class="field-input" type="search" placeholder="Search parent or child…" aria-label="Search appointments" />
+          <input id="adminApptDate" class="field-input" type="date" aria-label="Filter by date" />
+          <select id="adminApptType" class="field-select" aria-label="Filter by type"><option value="">All appointment types</option><option>Well-child visit</option><option>Vaccination</option><option>Growth monitoring</option><option>Developmental screening</option><option>Nutrition guidance</option><option>Newborn care</option><option>Sick visit</option><option>Follow-up consultation</option></select>
+        </div>
+        <div class="table-wrap bg-[color:var(--card)]">
+          <table class="table-base">
+            <thead><tr><th scope="col">Parent</th><th scope="col">Child</th><th scope="col">Type</th><th scope="col">Date &amp; Time</th><th scope="col">Status</th><th scope="col">Actions</th></tr></thead>
+            <tbody id="adminApptTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ PARENTS ============ -->
+      <section id="view-parents" class="dash-view hidden space-y-4" aria-label="Parent management">
+        <h3 class="font-heading font-extrabold text-xl">Parents <span class="text-sm font-normal text-[color:var(--text-secondary)]">(sample contacts)</span></h3>
+        <input id="adminParentSearch" class="field-input max-w-md" type="search" placeholder="Search name, email or phone…" aria-label="Search parents" />
+        <ul id="adminParentsList" class="grid gap-3 max-w-4xl"></ul>
+      </section>
+
+      <!-- ============ CHILDREN ============ -->
+      <section id="view-children" class="dash-view hidden space-y-4" aria-label="Child records">
+        <h3 class="font-heading font-extrabold text-xl">Child Records <span class="text-sm font-normal text-[color:var(--text-secondary)]">(sample)</span></h3>
+        <input id="adminChildSearch" class="field-input max-w-md" type="search" placeholder="Search child or parent…" aria-label="Search children" />
+        <div class="table-wrap bg-[color:var(--card)]">
+          <table class="table-base">
+            <thead><tr><th scope="col">Child</th><th scope="col">Age / DOB</th><th scope="col">Linked parent</th><th scope="col">Appointments</th><th scope="col">Gender</th></tr></thead>
+            <tbody id="adminChildrenTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ DOCTORS ============ -->
+      <section id="view-doctors" class="dash-view hidden space-y-4" aria-label="Doctor management">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="font-heading font-extrabold text-xl">Doctor Management</h3>
+            <p class="text-xs text-[color:var(--text-secondary)]">Fictional demo profiles — replace with verified clinic information.</p>
+          </div>
+          <button type="button" id="addDoctorBtn" class="btn-primary btn-sm">+ Add Doctor (Demo)</button>
+        </div>
+        <div id="adminDoctorsGrid" class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+      </section>
+
+      <!-- ============ VACCINATION RECORDS ============ -->
+      <section id="view-vaccines" class="dash-view hidden space-y-4" aria-label="Vaccination records">
+        <h3 class="font-heading font-extrabold text-xl">Vaccination Records</h3>
+        <div class="flex flex-wrap gap-3">
+          <input id="adminVaccineSearch" class="field-input max-w-sm" type="search" placeholder="Search vaccine or child…" aria-label="Search vaccination records" />
+          <select id="adminVaccineFilter" class="field-select !w-auto" aria-label="Filter by status"><option value="">All statuses</option><option value="pending">Pending</option><option value="completed">Completed</option></select>
+        </div>
+        <div class="table-wrap bg-[color:var(--card)]">
+          <table class="table-base">
+            <thead><tr><th scope="col">Vaccination (illustrative)</th><th scope="col">Child</th><th scope="col">Due date</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead>
+            <tbody id="adminVaccineTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ MESSAGES ============ -->
+      <section id="view-messages" class="dash-view hidden space-y-4" aria-label="Messages">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <h3 class="font-heading font-extrabold text-xl">Demo Contact Messages</h3>
+          <select id="adminMessageFilter" class="field-select !w-auto" aria-label="Filter messages"><option value="all">All messages</option><option value="unread">Unread</option><option value="read">Read</option></select>
+        </div>
+        <ul id="adminMessagesList" class="grid gap-3 max-w-4xl"></ul>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section id="view-settings" class="dash-view hidden space-y-6" aria-label="Clinic settings">
+        <h3 class="font-heading font-extrabold text-xl">Clinic Settings</h3>
+        <div class="grid lg:grid-cols-2 gap-6 items-start">
+          <form id="clinicSettingsForm" class="card p-6 space-y-4">
+            <h4 class="font-heading font-bold text-lg">Clinic Information</h4>
+            <div><label class="field-label" for="clinicName">Clinic name</label><input class="field-input" id="clinicName" name="clinicName" type="text" /></div>
+            <div><label class="field-label" for="phone">Phone</label><input class="field-input" id="phone" name="phone" type="tel" /></div>
+            <div><label class="field-label" for="email">Email</label><input class="field-input" id="email" name="email" type="email" /></div>
+            <div><label class="field-label" for="address">Address</label><textarea class="field-textarea" id="address" name="address" rows="2"></textarea></div>
+            <div><label class="field-label" for="hours">Working hours</label><textarea class="field-textarea" id="hours" name="hours" rows="2"></textarea></div>
+            <p class="text-[11px] text-[color:var(--text-secondary)]">Saved on this device only (demo). To go live, persist these in your real backend and update js/footer.js.</p>
+            <button type="submit" class="btn-primary">Save Clinic Settings</button>
+          </form>
+          <div class="space-y-6">
+            <div class="card p-6 space-y-3">
+              <h4 class="font-heading font-bold text-lg">Appearance</h4>
+              <p class="text-sm text-[color:var(--text-secondary)]">Theme and layout direction apply to the whole site on this device.</p>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" class="btn-outline btn-sm" data-action="toggle-theme">Toggle Light / Dark</button>
+                <button type="button" class="btn-outline btn-sm" data-action="toggle-rtl">Toggle LTR / RTL</button>
+              </div>
+            </div>
+            <div class="card p-6 space-y-3">
+              <h4 class="font-heading font-bold text-lg">Demo maintenance</h4>
+              <p class="text-sm text-[color:var(--text-secondary)]">Reset every sample record (appointments, parents, children, doctors, vaccines, messages) to its original state.</p>
+              <button type="button" class="btn-danger btn-sm" data-action="reset-demo-data">Reset Demo Data</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Doctor modal -->
+<div id="doctorModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" role="dialog" aria-modal="true" aria-labelledby="doctorModalTitle" aria-hidden="true">
+  <div class="card w-full max-w-lg p-6 space-y-4 max-h-[92vh] overflow-y-auto">
+    <div class="flex items-center justify-between gap-3">
+      <h3 id="doctorModalTitle" class="font-heading font-extrabold text-xl">Add demo doctor</h3>
+      <button type="button" id="closeDoctorModal" class="btn-icon" aria-label="Close dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <form id="doctorForm" class="grid gap-4">
+      <input type="hidden" id="doctorId" name="doctorId" />
+      <div><label class="field-label" for="doctorName">Full name &amp; credentials *</label><input class="field-input" id="doctorName" name="doctorName" type="text" required placeholder="Dr. Example Name, MD (Demo)" /></div>
+      <div><label class="field-label" for="doctorSpecialty">Specialty *</label><input class="field-input" id="doctorSpecialty" name="doctorSpecialty" type="text" required placeholder="General Pediatrics" /></div>
+      <div><label class="field-label" for="doctorQualification">Qualifications</label><input class="field-input" id="doctorQualification" name="doctorQualification" type="text" placeholder="MD, Fellowship… (mark as demo)" /></div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div><label class="field-label" for="doctorDays">Clinic days</label><input class="field-input" id="doctorDays" name="doctorDays" type="text" placeholder="Mon · Wed · Fri" /></div>
+        <div><label class="field-label" for="doctorAvailability">Availability</label><select class="field-select" id="doctorAvailability" name="doctorAvailability"><option>Available</option><option>On leave</option><option>Unavailable</option></select></div>
+      </div>
+      <button type="submit" class="btn-primary">Save Doctor (Demo)</button>
+    </form>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

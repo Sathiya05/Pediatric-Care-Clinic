@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LittleSteps Pediatric Care | A Happier, Healthier Childhood Begins Here</title>
+  <meta name="description" content="Warm, family-friendly pediatric care for every stage of childhood — book a checkup in minutes, meet our care philosophy, and explore our growth journey milestones." />
+  <meta name="theme-color" content="#287C91" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){try{var t=localStorage.getItem('ls_theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark'){document.documentElement.classList.add('dark');}var d=localStorage.getItem('ls_dir');if(d){document.documentElement.setAttribute('dir',d);}}catch(e){}})();</script>
+</head>
+<body class="font-body bg-[color:var(--bg)] text-[color:var(--text)] antialiased">
+<div id="navbar"></div>
+
+<main id="main-content">
+
+  <!-- ============ 1 · HERO (full-bleed image) ============ -->
+  <section class="relative min-h-[78vh] sm:min-h-[84vh] flex items-end overflow-hidden">
+    <img src="images/hero/hero-pediatric-wellness.jpg" alt="Friendly pediatrician interacting warmly with a smiling toddler and mother in a bright, modern pediatric clinic" width="1920" height="1080" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover object-[65%_center] md:object-center" onerror="this.onerror=null;this.src='images/hero/fallback.jpg'" />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A34]/95 via-[#0F2A34]/60 to-[#0F2A34]/20 md:bg-gradient-to-r md:from-[#0F2A34]/90 md:via-[#0F2A34]/50 md:to-transparent" aria-hidden="true"></div>
+    <div class="container-site relative pb-24 sm:pb-28 pt-32 text-white space-y-5 max-w-3xl">
+      <span class="eyebrow !bg-white/90">LittleSteps Pediatric Care</span>
+      <h1 class="font-heading font-semibold text-4xl sm:text-5xl xl:text-6xl leading-[1.08] text-balance">A Happier, Healthier Childhood Begins Here.</h1>
+      <p class="text-white/90 text-lg max-w-xl">From first immunizations to school physicals — calm, expert pediatric care for the whole family, steps from your neighborhood.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="appointments.html" class="btn-secondary">Book a Visit</a>
+        <a href="services.html" class="btn border-2 border-white/80 text-white hover:bg-white hover:text-[color:var(--primary-dark)]">Explore Care</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · QUICK BOOKING PANEL (overlapping) ============ -->
+  <section class="relative -mt-16 z-10" aria-labelledby="quick-book-heading">
+    <div class="container-site">
+      <form id="quickBookForm" class="card shadow-soft p-5 sm:p-6 grid md:grid-cols-12 gap-4 items-end">
+        <div class="md:col-span-12 flex items-center justify-between gap-3">
+          <h2 id="quick-book-heading" class="font-heading font-semibold text-lg sm:text-xl flex items-center gap-2"><span class="icon-bubble !w-10 !h-10"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> Quick Appointment</h2>
+          <span class="text-[10px] sm:text-xs font-semibold text-[color:var(--text-secondary)]">Demo request — no message is sent</span>
+        </div>
+        <div class="field-wrap md:col-span-3">
+          <label class="field-label" for="qb-child">Child’s name</label>
+          <input class="field-input" id="qb-child" name="childName" type="text" required autocomplete="off" placeholder="e.g. Aarav" />
+        </div>
+        <div class="field-wrap md:col-span-3">
+          <label class="field-label" for="qb-type">Visit type</label>
+          <select class="field-select" id="qb-type" name="type" required>
+            <option value="">Select…</option>
+            <option>Well-child visit</option>
+            <option>Vaccination</option>
+            <option>Growth monitoring</option>
+            <option>Developmental screening</option>
+            <option>Nutrition guidance</option>
+            <option>Newborn care</option>
+            <option>Sick visit</option>
+          </select>
+        </div>
+        <div class="field-wrap md:col-span-3">
+          <label class="field-label" for="qb-date">Preferred date</label>
+          <input class="field-input" id="qb-date" name="date" type="date" required />
+        </div>
+        <div class="md:col-span-3">
+          <button type="submit" class="btn-primary w-full">Continue Booking
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ 3 · CARE PHILOSOPHY ============ -->
+  <section class="section" aria-labelledby="philosophy-heading">
+    <div class="container-site space-y-10">
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="eyebrow">Our Care Philosophy</span>
+        <h2 id="philosophy-heading" class="section-heading">Three promises in every visit.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card card-hover p-7 text-center space-y-3">
+          <span class="icon-bubble mx-auto !w-16 !h-16 !rounded-3xl"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></span>
+          <h3 class="font-heading font-bold text-xl">Listen First</h3>
+          <p class="text-sm text-[color:var(--text-secondary)]">Every concern gets unhurried attention. We ask, we listen, and we answer in plain language.</p>
+        </div>
+        <div class="card card-hover p-7 text-center space-y-3">
+          <span class="icon-bubble mx-auto !w-16 !h-16 !rounded-3xl !bg-[color:var(--peach)] !text-[color:var(--secondary-dark)]"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 4.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <h3 class="font-heading font-bold text-xl">Gentle by Default</h3>
+          <p class="text-sm text-[color:var(--text-secondary)]">Exams at child speed, distraction when it helps, honesty always. No white-coat intimidation.</p>
+        </div>
+        <div class="card card-hover p-7 text-center space-y-3">
+          <span class="icon-bubble mx-auto !w-16 !h-16 !rounded-3xl"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <h3 class="font-heading font-bold text-xl">Family Partnership</h3>
+          <p class="text-sm text-[color:var(--text-secondary)]">You know your child best. We combine your insight with clinical expertise for decisions that fit your family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · FEATURED SERVICES (visual cards) ============ -->
+  <section class="section bg-[color:var(--peach)]" aria-labelledby="featured-heading">
+    <div class="container-site space-y-10">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="space-y-3 max-w-2xl">
+          <span class="eyebrow">Featured Services</span>
+          <h2 id="featured-heading" class="section-heading">Care for every season of childhood.</h2>
+        </div>
+        <a href="services.html" class="btn-outline btn-sm">All services</a>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <a href="services.html#well-child" class="group relative rounded-4xl overflow-hidden h-80 sm:h-96 shadow-card">
+          <img src="images/home/home2-service-wellchild.jpg" alt="Cheerful pediatrician measuring and interacting with a happy toddler during checkup" width="1400" height="1400" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A34]/85 to-transparent"></div>
+          <div class="absolute bottom-0 p-6 text-white"><h3 class="font-heading font-semibold text-2xl">Well-Child Visits</h3><p class="text-sm text-white/85 mt-1">Checkups that keep childhood on track.</p></div>
+        </a>
+        <a href="vaccinations.html" class="group relative rounded-4xl overflow-hidden h-80 sm:h-96 shadow-card">
+          <img src="images/home/home2-service-vaccine.jpg" alt="Caring pediatric nurse applying a playful animal bandage to a smiling child's arm" width="1400" height="1400" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A34]/85 to-transparent"></div>
+          <div class="absolute bottom-0 p-6 text-white"><h3 class="font-heading font-semibold text-2xl">Vaccination Visits</h3><p class="text-sm text-white/85 mt-1">Friendly, anxiety-free protection.</p></div>
+        </a>
+        <a href="services.html#newborn" class="group relative rounded-4xl overflow-hidden h-80 sm:h-96 shadow-card">
+          <img src="images/home/home2-service-newborn.jpg" alt="Pediatrician tenderly examining a peaceful swaddled newborn baby" width="1400" height="1400" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A34]/85 to-transparent"></div>
+          <div class="absolute bottom-0 p-6 text-white"><h3 class="font-heading font-semibold text-2xl">Newborn Care</h3><p class="text-sm text-white/85 mt-1">Calm support for your earliest days.</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · GROWTH & WELLNESS JOURNEY ============ -->
+  <section class="section" aria-labelledby="journey-heading">
+    <div class="container-site space-y-10">
+      <div class="space-y-3 max-w-2xl">
+        <span class="eyebrow">Growth &amp; Wellness Journey</span>
+        <h2 id="journey-heading" class="section-heading">One path, six bright chapters.</h2>
+        <p class="lead">What we focus on together at each stage — always personalized to your child.</p>
+      </div>
+      <ol class="grid sm:grid-cols-2 lg:grid-cols-6 gap-4">
+        <li class="card p-4 text-center space-y-1 border-t-4 !border-t-[color:var(--secondary)]"><p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--primary)]">0–3 mo</p><h3 class="font-bold text-sm">Newborn</h3><p class="text-xs text-[color:var(--text-secondary)]">Feeding, sleep &amp; safe growth</p></li>
+        <li class="card p-4 text-center space-y-1 border-t-4 !border-t-[color:var(--primary)]"><p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--primary)]">4–12 mo</p><h3 class="font-bold text-sm">Infant</h3><p class="text-xs text-[color:var(--text-secondary)]">Milestones &amp; first vaccines</p></li>
+        <li class="card p-4 text-center space-y-1 border-t-4 !border-t-[color:var(--secondary)]"><p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--primary)]">1–3 yrs</p><h3 class="font-bold text-sm">Toddler</h3><p class="text-xs text-[color:var(--text-secondary)]">Language, nutrition &amp; autonomy</p></li>
+        <li class="card p-4 text-center space-y-1 border-t-4 !border-t-[color:var(--primary)]"><p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--primary)]">3–5 yrs</p><h3 class="font-bold text-sm">Preschool</h3><p class="text-xs text-[color:var(--text-secondary)]">School readiness &amp; behavior</p></li>
+        <li class="card p-4 text-center space-y-1 border-t-4 !border-t-[color:var(--secondary)]"><p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--primary)]">6–12 yrs</p><h3 class="font-bold text-sm">School Age</h3><p class="text-xs text-[color:var(--text-secondary)]">Sports, sleep &amp; learning</p></li>
+        <li class="card p-4 text-center space-y-1 border-t-4 !border-t-[color:var(--primary)]"><p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--primary)]">13–18 yrs</p><h3 class="font-bold text-sm">Teen</h3><p class="text-xs text-[color:var(--text-secondary)]">Growth spurts &amp; confidentiality</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 6 · DOCTORS PREVIEW ============ -->
+  <section class="section bg-[color:var(--accent)]" aria-labelledby="team-heading">
+    <div class="container-site grid lg:grid-cols-2 gap-10 items-center">
+      <div class="space-y-5">
+        <span class="eyebrow">Meet the Team</span>
+        <h2 id="team-heading" class="section-heading">Doctors who high-five as easily as they diagnose.</h2>
+        <p class="lead">Warm clinicians, honest guidance and time for your questions — get to know the people behind LittleSteps.</p>
+        <a href="doctors.html" class="btn-primary">Meet the Doctors</a>
+      </div>
+      <div class="grid grid-cols-4 gap-3 sm:gap-4">
+        <img src="images/doctors/doctor-1.jpg" alt="Dr. Amara Bennett (demo)" width="400" height="500" loading="lazy" class="w-full h-28 sm:h-40 object-cover object-top rounded-3xl shadow-card" />
+        <img src="images/doctors/doctor-2.jpg" alt="Dr. Rajiv Nair (demo)" width="400" height="500" loading="lazy" class="w-full h-36 sm:h-48 object-cover object-top rounded-3xl shadow-card mt-4 sm:mt-6" />
+        <img src="images/doctors/doctor-3.jpg" alt="Dr. Elena Petrova (demo)" width="400" height="500" loading="lazy" class="w-full h-28 sm:h-40 object-cover object-top rounded-3xl shadow-card" />
+        <img src="images/doctors/doctor-4.jpg" alt="Dr. Marcus Whitfield (demo)" width="400" height="500" loading="lazy" class="w-full h-36 sm:h-48 object-cover object-top rounded-3xl shadow-card mt-4 sm:mt-6" />
+        <p class="col-span-4 text-[11px] text-[color:var(--text-secondary)] text-center">Fictional demonstration profiles — not real, verifiable practitioners.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · FINAL CTA ============ -->
+  <section class="py-16 bg-[color:var(--bg)] text-center" aria-labelledby="home2-cta">
+    <div class="container-site space-y-5 max-w-2xl">
+      <h2 id="home2-cta" class="section-heading">Ready when you are — book your child’s next visit.</h2>
+      <p class="lead">A calmer clinic, brighter checkups, and a pediatric team that learns your child’s name — and favorite dinosaur.</p>
+      <a href="appointments.html" class="btn-primary">Book an Appointment</a>
+    </div>
+  </section>
+</main>
+
+<div id="footer"></div>
+<script>
+  // Quick booking panel → deep-link into appointments.html with prefilled fields
+  document.getElementById('quickBookForm')?.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    params.set('childName', this.elements['childName'].value.trim());
+    params.set('type', this.elements['type'].value);
+    params.set('date', this.elements['date'].value);
+    window.location.href = 'appointments.html?' + params.toString();
+  });
+  document.getElementById('qb-date').min = new Date().toISOString().slice(0, 10);
+</script>
+<script src="js/main.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   LittleSteps Pediatric Care - Design System
+   Colors are exposed as CSS variables so both themes stay
+   consistent across public pages and dashboards.
+   ============================================================ */
+
+:root {
+  --primary: #287C91;
+  --primary-dark: #1F5F70;
+  --primary-light: #3E93A8;
+  --secondary: #F4A261;
+  --secondary-dark: #E08A45;
+  --accent: #DDF3EF;
+  --bg: #FFF9F4;
+  --card: #FFFFFF;
+  --peach: #FFF3E8;
+  --border: #E5E7EB;
+  --text: #334155;
+  --text-secondary: #64748B;
+  --focus: #287C91;
+}
+
+html.dark {
+  --primary: #4FA3B8;
+  --primary-dark: #287C91;
+  --primary-light: #6FB9CC;
+  --secondary: #F6B27E;
+  --secondary-dark: #F4A261;
+  --accent: #1E3F4C;
+  --bg: #132B35;
+  --card: #1C3B47;
+  --peach: #243F49;
+  --border: #2E4E5C;
+  --text: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --focus: #F4A261;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection { background: var(--secondary); color: #3A2A12; }
+}
+
+@layer components {
+  /* ---------- Brand & Typography helpers ---------- */
+  .font-logo {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* ---------- Layout helpers ---------- */
+  .container-site { @apply w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-14 sm:py-20; }
+  .section-heading {
+    @apply font-heading font-semibold text-3xl sm:text-4xl lg:text-[2.75rem] text-[color:var(--text)] leading-tight tracking-tight;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-[color:var(--primary)] bg-[color:var(--accent)] rounded-full px-4 py-1.5;
+  }
+  .lead { @apply text-base sm:text-lg text-[color:var(--text-secondary)] leading-relaxed; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-heading font-semibold rounded-full px-6 py-3 text-sm sm:text-base transition-all duration-200 select-none whitespace-nowrap;
+    min-height: 44px;
+  }
+  .btn:active { transform: translateY(1px) scale(0.99); }
+  .btn-primary {
+    @apply btn text-white;
+    background: linear-gradient(160deg, var(--primary-light), var(--primary));
+    box-shadow: 0 10px 24px -10px rgba(40,124,145,.55);
+  }
+  .btn-primary:hover { background: linear-gradient(160deg, var(--primary), var(--primary-dark)); }
+  .btn-secondary {
+    @apply btn text-[#4A2F10];
+    background: linear-gradient(160deg, #FBC38C, var(--secondary));
+    box-shadow: 0 10px 24px -10px rgba(244,162,97,.6);
+  }
+  .btn-secondary:hover { background: linear-gradient(160deg, var(--secondary), var(--secondary-dark)); }
+  .btn-outline {
+    @apply btn border-2 border-[color:var(--primary)] text-[color:var(--primary)] bg-transparent hover:bg-[color:var(--accent)];
+  }
+  .btn-ghost { @apply btn text-[color:var(--primary)] hover:bg-[color:var(--accent)]; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+  .btn-sm { @apply px-4 py-2 text-xs sm:text-sm; min-height: 38px; }
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--card)] text-[color:var(--text)] hover:text-[color:var(--primary)] hover:border-[color:var(--primary)] transition-colors;
+    width: 44px; height: 44px;
+  }
+
+  /* ---------- Cards ---------- */
+  .card {
+    @apply bg-[color:var(--card)] rounded-3xl border border-[color:var(--border)] shadow-card;
+  }
+  .card-hover { @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-soft; }
+  .icon-bubble {
+    @apply inline-flex items-center justify-center rounded-2xl bg-[color:var(--accent)] text-[color:var(--primary)];
+    width: 56px; height: 56px;
+  }
+
+  /* ---------- Forms ---------- */
+  .field-label { @apply block text-sm font-semibold text-[color:var(--text)] mb-1.5; }
+  .field-input, .field-select, .field-textarea {
+    @apply w-full rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] text-[color:var(--text)] px-4 py-3 text-sm sm:text-base placeholder:text-[color:var(--text-secondary)] transition-shadow;
+  }
+  .field-input:focus, .field-select:focus, .field-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(40,124,145,.18);
+  }
+  .field-error { @apply mt-1.5 text-xs font-semibold text-red-600 dark:text-red-400; }
+  .field-hint { @apply mt-1.5 text-xs text-[color:var(--text-secondary)]; }
+
+  /* ---------- Badges ---------- */
+  .badge { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold; }
+  .badge-success { @apply badge bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300; }
+  .badge-warning { @apply badge bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300; }
+  .badge-info    { @apply badge bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300; }
+  .badge-danger  { @apply badge bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300; }
+  .badge-neutral { @apply badge bg-slate-100 text-slate-700 dark:bg-slate-700/50 dark:text-slate-200; }
+
+  /* ---------- Navbar ---------- */
+  .nav-link {
+    @apply relative inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold text-[color:var(--text)] hover:text-[color:var(--primary)] hover:bg-[color:var(--accent)] transition-colors;
+    min-height: 44px;
+  }
+  .nav-link[aria-current="page"] { color: var(--primary); background: var(--accent); }
+  .nav-dropdown-item[aria-current="page"] { color: var(--primary); background: var(--accent); }
+  .nav-dropdown-panel {
+    @apply absolute top-full mt-3 min-w-[240px] rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] shadow-soft p-2 z-50;
+    opacity: 0; transform: translateY(8px) scale(.98); pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  .nav-dropdown.open .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .nav-dropdown-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-[color:var(--text)] hover:bg-[color:var(--accent)] hover:text-[color:var(--primary)] transition-colors;
+  }
+  .dropdown-chevron { transition: transform .2s ease; }
+  .nav-dropdown.open .dropdown-chevron { transform: rotate(180deg); }
+
+  /* ---------- Toast ---------- */
+  #toast-container { @apply fixed bottom-6 left-1/2 z-[70] flex flex-col gap-2 w-[min(92vw,420px)]; transform: translateX(-50%); }
+  .toast {
+    @apply flex items-start gap-3 rounded-2xl border px-4 py-3 shadow-soft text-sm font-medium bg-[color:var(--card)] text-[color:var(--text)];
+    animation: toast-in .25s ease;
+  }
+  .toast-success { border-color: #10B981; }
+  .toast-error { border-color: #EF4444; }
+  .toast-info { border-color: var(--primary); }
+
+  /* ---------- FAQ accordion ---------- */
+  .faq-question {
+    @apply w-full flex items-center justify-between gap-4 text-start font-heading font-semibold text-base sm:text-lg py-5 px-6 text-[color:var(--text)] hover:text-[color:var(--primary)] transition-colors;
+  }
+  .faq-answer { @apply max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6; }
+  .faq-item[data-open="true"] .faq-answer { @apply max-h-96 pb-5; }
+  .faq-item[data-open="true"] .faq-chevron { transform: rotate(45deg); }
+  .faq-chevron { transition: transform .25s ease; }
+
+  /* ---------- Dashboard ---------- */
+  .dash-link {
+    @apply flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-[color:var(--text-secondary)] hover:text-[color:var(--primary)] hover:bg-[color:var(--accent)] transition-colors;
+  }
+  .dash-link[aria-current="page"], .dash-link.active { color: var(--primary); background: var(--accent); }
+  .stat-card { @apply card card-hover p-5 flex items-center gap-4; }
+  .table-wrap { @apply overflow-x-auto rounded-2xl border border-[color:var(--border)]; }
+  .table-base { @apply w-full text-sm text-start min-w-[640px]; }
+  .table-base th { @apply text-start text-xs uppercase tracking-wider text-[color:var(--text-secondary)] bg-[color:var(--peach)] px-4 py-3; }
+  .table-base td { @apply px-4 py-3 border-t border-[color:var(--border)] align-middle; }
+
+  /* ---------- Decorative shapes ---------- */
+  .blob { position: absolute; border-radius: 9999px; filter: blur(2px); pointer-events: none; z-index: 0; }
+
+  /* ---------- Dashboard sidebar (RTL-aware) ---------- */
+  .dash-sidebar {
+    transform: translateX(-110%);
+    visibility: hidden;
+    transition: transform .3s ease, visibility .3s ease;
+  }
+  [dir="rtl"] .dash-sidebar { transform: translateX(110%); }
+  .dash-sidebar.sidebar-open { transform: translateX(0); visibility: visible; }
+  /* Desktop (>= 1377px): docked sidebar, always visible — no drawer/overlay */
+  @media (min-width: 1377px) {
+    .dash-sidebar { transform: none; visibility: visible; }
+  }
+
+  /* ---------- Skeleton / empty states ---------- */
+  .empty-state { @apply text-center py-12 px-6; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-hero-pattern {
+    background-color: var(--bg);
+    background-image: radial-gradient(circle at 15% 20%, rgba(221,243,239,.9) 0, transparent 40%),
+                      radial-gradient(circle at 85% 15%, rgba(255,243,232,.95) 0, transparent 45%),
+                      radial-gradient(circle at 75% 85%, rgba(221,243,239,.7) 0, transparent 40%);
+  }
+  .dark .bg-hero-pattern {
+    background-image: radial-gradient(circle at 15% 20%, rgba(40,124,145,.25) 0, transparent 40%),
+                      radial-gradient(circle at 85% 15%, rgba(244,162,97,.12) 0, transparent 45%),
+                      radial-gradient(circle at 75% 85%, rgba(40,124,145,.18) 0, transparent 40%);
+  }
+}
+
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float-soft { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.animate-float { animation: float-soft 5s ease-in-out infinite; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* ---------- RTL support via logical properties ---------- */
+[dir="rtl"] .nav-dropdown-panel { right: 0; left: auto; }
+[dir="rtl"] .table-base th, [dir="rtl"] .table-base td { text-align: right; }
+[dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+
+/* ---------- Sticky navbar ----------
+   The wrapper (#navbar) is sticky — not the <header> inside it —
+   because sticky is constrained by its parent; sticking the header
+   inside a same-height wrapper would void the effect. */
+#navbar { position: sticky; top: 0; z-index: 60; }
+.navbar-sticky { position: static; }
